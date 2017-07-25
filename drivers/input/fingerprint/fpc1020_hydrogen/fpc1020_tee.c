@@ -561,6 +561,7 @@ static int fpc1020_tee_probe(struct platform_device *pdev)
 	udelay(FPC1020_RESET_HIGH2_US);
 #ifdef CONFIG_FB
 	fpc1020->fb_notifier.notifier_call = fpc1020_fb_notifier_cb;
+    fpc1020->fb_notifier.priority = INT_MAX;
 	rc = fb_register_client(&fpc1020->fb_notifier);
 	if (rc < 0) {
 		dev_err(dev,
