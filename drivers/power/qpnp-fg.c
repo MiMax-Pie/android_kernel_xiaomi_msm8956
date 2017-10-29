@@ -2066,7 +2066,8 @@ static void soc_work_fn(struct work_struct *work)
 {	struct fg_chip *chip = container_of(work,
 				struct fg_chip,
 				soc_work.work);
-	pr_info("adjust_soc: s %d r %d i %d v %d t %d\n",
+	pr_info("adjust_soc: BATTERY: Capacity %d%%, Charge %dµAh, "
+                        "Current %dµA, Voltage %dµV, Temperature %dc°C\n",
 			get_prop_capacity(chip),
 			get_sram_prop_now(chip, FG_DATA_BATT_SOC),
 			get_sram_prop_now(chip, FG_DATA_CURRENT),
