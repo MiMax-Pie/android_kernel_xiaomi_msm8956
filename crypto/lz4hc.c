@@ -49,15 +49,6 @@ static int lz4hc_compress_crypto(struct crypto_tfm *tfm, const u8 *src,
 			    unsigned int slen, u8 *dst, unsigned int *dlen)
 {
 	struct lz4hc_ctx *ctx = crypto_tfm_ctx(tfm);
-<<<<<<< HEAD
-	int out_len = LZ4_compress_HC(src, dst, slen,
-		*dlen, LZ4HC_DEFAULT_CLEVEL, ctx->lz4hc_comp_mem);
-
-	if (!out_len)
-		return -EINVAL;
-
-	*dlen = out_len;
-=======
 	size_t tmp_len = *dlen;
 	int err;
 
@@ -67,22 +58,12 @@ static int lz4hc_compress_crypto(struct crypto_tfm *tfm, const u8 *src,
 		return -EINVAL;
 
 	*dlen = tmp_len;
->>>>>>> 3c61286... crypto: add lz4 Cryptographic API
 	return 0;
 }
 
 static int lz4hc_decompress_crypto(struct crypto_tfm *tfm, const u8 *src,
 			      unsigned int slen, u8 *dst, unsigned int *dlen)
 {
-<<<<<<< HEAD
-	int out_len = LZ4_decompress_safe(src, dst, slen, *dlen);
-
-	if (out_len < 0)
-		return out_len;
-
-	*dlen = out_len;
-	return 0;
-=======
 	int err;
 	size_t tmp_len = *dlen;
 	size_t __slen = slen;
@@ -93,7 +74,6 @@ static int lz4hc_decompress_crypto(struct crypto_tfm *tfm, const u8 *src,
 
 	*dlen = tmp_len;
 	return err;
->>>>>>> 3c61286... crypto: add lz4 Cryptographic API
 }
 
 static struct crypto_alg alg_lz4hc = {
@@ -124,7 +104,3 @@ module_exit(lz4hc_mod_fini);
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("LZ4HC Compression Algorithm");
-<<<<<<< HEAD
-MODULE_ALIAS_CRYPTO("lz4hc");
-=======
->>>>>>> 3c61286... crypto: add lz4 Cryptographic API
